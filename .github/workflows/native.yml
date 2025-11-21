@@ -1,0 +1,20 @@
+name: Build Native
+on: [ push, pull_request ]
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: graalvm/setup-graalvm@v1
+        with:
+          java-version: '25'
+          distribution: 'liberica'
+          cache: maven
+      - name: Build Version
+        run: |
+          echo "GRAALVM_HOME: $GRAALVM_HOME"
+          echo "JAVA_HOME: $JAVA_HOME"
+          java --version
+          native-image --version
+      - name: Build APP
+        run: ./mvnw -Pnative native:compile -DskipTests

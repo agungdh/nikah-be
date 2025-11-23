@@ -17,12 +17,12 @@ public class RencanaKehadiran {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(unique = true, nullable = false, updatable = false)
+    @Column(nullable = false, updatable = false)
     private UUID uuid;
 
     private String nama;
     private String alamat;
-    private boolean status;
+    private boolean statusKehadiran;
 
     @Column(nullable = false, updatable = false)
     private long createdAt;
